@@ -4,24 +4,29 @@
     <title>Sihero</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; font-family: sans-serif; }
-        nav { background: #333; padding: 10px; display: flex; gap: 15px; }
-        nav a { color: white; text-decoration: none; padding: 5px 10px; border-radius: 4px; }
-        nav a:hover { background: #555; }
-        #gas-iframe { width: 100%; height: calc(100vh - 50px); border: none; }
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+        #gas-iframe { width: 100%; height: 100vh; border: none; }
     </style>
 </head>
 <body>
 
-    <nav>
-        <a href="https://script.google.com/macros/s/AKfycbzeQnaqXRfmwMz5JGA5wX9b5mUtbov_WMbgzQLx_7VvnUaObIx0mMc331x62e8Nl2Xo/exec" target="gas-iframe">Utama</a>
-        <a href="https://script.google.com/macros/s/AKfycbzeQnaqXRfmwMz5JGA5wX9b5mUtbov_WMbgzQLx_7VvnUaObIx0mMc331x62e8Nl2Xo/exec?page=sekolah" target="gas-iframe">Sekolah</a>
-        <a href="https://script.google.com/macros/s/AKfycbzeQnaqXRfmwMz5JGA5wX9b5mUtbov_WMbgzQLx_7VvnUaObIx0mMc331x62e8Nl2Xo/exec?page=dinas" target="gas-iframe">Dinas</a>
-    </nav>
+    <iframe id="gas-iframe" src=""></iframe>
 
-    <iframe name="gas-iframe" id="gas-iframe" 
-            src="https://script.google.com/macros/s/AKfycbzeQnaqXRfmwMz5JGA5wX9b5mUtbov_WMbgzQLx_7VvnUaObIx0mMc331x62e8Nl2Xo/exec">
-    </iframe>
+    <script>
+        
+        const urlParams = new URLSearchParams(window.location.search);
+        const page = urlParams.get('page');
+        
+        
+        const baseUrl = "https://script.google.com/macros/s/AKfycbzeQnaqXRfmwMz5JGA5wX9b5mUtbov_WMbgzQLx_7VvnUaObIx0mMc331x62e8Nl2Xo/exec";
+        
+        const iframe = document.getElementById('gas-iframe');
+        if (page) {
+            iframe.src = baseUrl + "?page=" + page;
+        } else {
+            iframe.src = baseUrl;
+        }
+    </script>
 
 </body>
 </html>
